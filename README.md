@@ -1,4 +1,7 @@
-# <img src="public/logo.png" width="40" height="40" align="center"> MarkdownFlow
+ 
+
+
+# <img src="public/logofull.png" alt="logo" width="80" height="80" align=center>  MarkdownFlow
 
 **MarkdownFlow** es una aplicación de escritorio minimalista y elegante diseñada para visualizar archivos Markdown y exportarlos a PDF con una fidelidad visual excepcional. Inspirada en la estética de herramientas modernas como Notion, ofrece una experiencia de lectura fluida y profesional.
 
@@ -74,4 +77,4 @@ Este proyecto está bajo la licencia MIT. Siéntete libre de usarlo y mejorarlo.
 
 ---
 
-Desarrollado con ❤️ por **Experimento**
+Desarrollado con ❤️ por **Mexxtz**
