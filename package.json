@@ -1,7 +1,7 @@
 {
   "name": "markdown-flow",
   "private": true,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A minimalist Markdown visualizer and PDF exporter.",
   "author": "Experimento",
   "main": "dist-electron/main.js",

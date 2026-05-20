@@ -25,6 +25,7 @@ A minimalist Markdown visualizer and PDF exporter built with Electron, React, an
 - **v1.1.3**: Added application version display to the sidebar footer.
 - **v1.1.4**: Fixed 'Not allowed to load local resource' error in production. Created `RECOMMENDATIONS.md` for future roadmap.
 - **v1.1.5**: Optimized production path resolution with fallbacks. Configured `electron-builder` to explicitly include brand icon and app metadata.
+- **v1.1.6**: Fixed production crash caused by `package.json` access in the preload script. Migrated version display to Vite build-time injection for stability.
 
 ## Key Features
 - Native PDF Export.
