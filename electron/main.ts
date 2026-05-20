@@ -121,7 +121,9 @@ ipcMain.handle('export-to-pdf', async (event, fileName: string) => {
   try {
     const data = await win.webContents.printToPDF({
       printBackground: true,
-      margins: { top: 0, bottom: 0, left: 0, right: 0 }
+      margins: { top: 1, bottom: 1, left: 1, right: 1 }, // Standard margins in inches (approx)
+      displayHeaderFooter: false,
+      pageSize: 'A4'
     })
     await fs.writeFile(result.filePath, data)
     return { success: true, filePath: result.filePath }

@@ -20,6 +20,7 @@ A minimalist Markdown visualizer and PDF exporter built with Electron, React, an
 - **v1.0.0**: Initial implementation with PDF export, sidebar, and basic Markdown rendering.
 - **v1.0.1**: Fixed `electronAPI` undefined error by switching preload to CommonJS. Added Drag & Drop, local image support, and code highlighting.
 - **v1.1.0**: Applied brand identity from `GuiaIdentidad.png`. Added custom toast notifications. Set up `MEMORY.md`.
+- **v1.1.1**: Fixed PDF export to isolate Markdown content only. Improved print margins and removed UI elements from PDF output.
 
 ## Key Features
 - Native PDF Export.
