@@ -1,0 +1,31 @@
+name: Release Electron App
+
+on:
+  push:
+    tags:
+      - 'v*' # Se activa automáticamente al empujar cualquier tag que comience con 'v' (ej: v1.1.6)
+
+permissions:
+  contents: write # Permite al flujo de trabajo subir archivos adjuntos (el .exe) al Release de GitHub
+
+jobs:
+  build:
+    runs-on: windows-latest # Ejecuta sobre un entorno nativo de Windows Server en GitHub
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build and Publish Installer
+        run: npm run build -- --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token automático provisto por GitHub para subir el Release
