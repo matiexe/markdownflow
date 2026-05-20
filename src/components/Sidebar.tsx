@@ -46,6 +46,9 @@ const Sidebar: React.FC<SidebarProps> = ({
           ))}
         </ul>
       </div>
+      <div className="sidebar-footer">
+        v{window.electronAPI?.getAppVersion()}
+      </div>
     </aside>
   )
 }

@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getFiles: (folderPath: string) => ipcRenderer.invoke('get-files', folderPath),
   readFile: (filePath: string) => ipcRenderer.invoke('read-file', filePath),
   exportToPdf: (fileName: string) => ipcRenderer.invoke('export-to-pdf', fileName),
+  getAppVersion: () => process.env.npm_package_version || require('../package.json').version,
   onMainProcessMessage: (callback: (message: string) => void) => {
     ipcRenderer.on('main-process-message', (_event: any, value: string) => callback(value))
   }
