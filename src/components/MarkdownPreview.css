@@ -1,10 +1,16 @@
 .markdown-body {
   max-width: 900px;
   width: 100%;
-  color: #37352f;
+  color: var(--color-text);
+  font-family: var(--font-secondary);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
   padding-bottom: 100px;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  font-family: var(--font-primary);
+  color: var(--color-ink);
 }
 
 .markdown-body h1 {
