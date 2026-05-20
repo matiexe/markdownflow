@@ -47,8 +47,8 @@ function createWindow() {
 
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
-    // win.webContents.openDevTools() // Useful for debugging if needed
   } else {
+    // Correct way to load local files in production Electron
     win.loadFile(path.join(process.env.DIST!, 'index.html'))
   }
 }

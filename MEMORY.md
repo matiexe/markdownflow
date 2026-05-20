@@ -23,6 +23,7 @@ A minimalist Markdown visualizer and PDF exporter built with Electron, React, an
 - **v1.1.1**: Fixed PDF export to isolate Markdown content only. Improved print margins and removed UI elements from PDF output.
 - **v1.1.2**: Updated application favicon and window icon to use `logo.png`.
 - **v1.1.3**: Added application version display to the sidebar footer.
+- **v1.1.4**: Fixed 'Not allowed to load local resource' error in production. Created `RECOMMENDATIONS.md` for future roadmap.
 
 ## Key Features
 - Native PDF Export.
