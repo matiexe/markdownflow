@@ -26,7 +26,7 @@ function createWindow() {
   console.log('Preload path:', preloadPath) // For debugging
 
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC!, 'electron-vite.svg'),
+    icon: path.join(process.env.VITE_PUBLIC!, 'logo.png'),
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,
