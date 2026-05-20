@@ -23,7 +23,7 @@ function registerLocalFileProtocol() {
 
 function createWindow() {
   const preloadPath = path.join(__dirname, 'preload.js')
-  console.log('Preload path:', preloadPath) // For debugging
+  console.log('Preload path:', preloadPath)
 
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC!, 'logo.png'),
@@ -36,7 +36,7 @@ function createWindow() {
     width: 1200,
     height: 800,
     titleBarStyle: 'hiddenInset',
-    autoHideMenuBar: true // This hides the menu bar on Windows/Linux
+    autoHideMenuBar: true
   })
 
   // Also remove the menu completely
@@ -48,8 +48,13 @@ function createWindow() {
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
-    // Correct way to load local files in production Electron
-    win.loadFile(path.join(process.env.DIST!, 'index.html'))
+    // In production, we need a more robust path resolution
+    const indexPath = path.join(process.env.DIST!, 'index.html')
+    win.loadFile(indexPath).catch(err => {
+      console.error('Failed to load index.html:', err)
+      // Fallback for some packaging structures
+      win?.loadURL(`file://${path.join(app.getAppPath(), 'dist/index.html')}`)
+    })
   }
 }
 

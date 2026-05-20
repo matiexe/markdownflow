@@ -1,7 +1,9 @@
 {
   "name": "markdown-flow",
   "private": true,
-  "version": "1.1.4",
+  "version": "1.1.5",
+  "description": "A minimalist Markdown visualizer and PDF exporter.",
+  "author": "Experimento",
   "main": "dist-electron/main.js",
   "type": "module",
   "scripts": {
@@ -9,6 +11,29 @@
     "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "electron:dev": "vite"
+  },
+  "build": {
+    "appId": "com.experimento.markdownflow",
+    "productName": "MarkdownFlow",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "public/logo.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ]
   },
   "dependencies": {
     "react": "^18.2.0",
