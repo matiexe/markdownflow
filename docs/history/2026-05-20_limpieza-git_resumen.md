@@ -30,8 +30,13 @@ Hemos solucionado con éxito el error de empuje a GitHub en tu repositorio `visu
    - Creamos e integramos un flujo de trabajo de GitHub Actions en `.github/workflows/release.yml`.
    - Recreamos y empujamos la etiqueta `v1.1.6` para disparar el compilador automático en la nube.
 
+7. **Despliegue de la Landing Page en GitHub Pages:**
+   - Para alojar la landing page de Google Stitch en el mismo repositorio sin generar conflictos con el `index.html` de la aplicación Electron, creamos una **rama huérfana aislada llamada `gh-pages`**.
+   - Copiamos `code.html` (renombrado a `index.html`) y `screen.png` a dicha rama y la publicamos en GitHub.
+   - Retornamos de forma segura a la rama `main`, manteniendo el espacio de trabajo local 100% limpio y listo para el desarrollo de la aplicación.
+
 ---
 
 ## Estado Actual
 
-El repositorio en GitHub ahora está completamente al día con tu rama local `main`, contiene sus tags de versiones optimizados y **cuenta con un sistema de compilación automatizado en la nube**. Cada vez que crees un tag, GitHub compilará el instalable `.exe` de forma automática.
+El repositorio en GitHub ahora está completamente al día con tu rama local `main`, contiene sus tags de versiones optimizados, **cuenta con un sistema de compilación automatizado en la nube** y **sirve la Landing Page oficial del producto de forma completamente aislada y gratuita** a través de la rama `gh-pages`. Cada vez que crees un tag, GitHub compilará el instalable `.exe` de forma automática.
