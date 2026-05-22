@@ -171,6 +171,148 @@
         .glow-button:hover::after {
             opacity: 1;
         }
+
+        /* Mockup Simulator Specific Styles */
+        .mock-sidebar {
+            width: 220px;
+            background-color: #0F1117;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+            flex-shrink: 0;
+        }
+        .mock-btn-open {
+            background: #1A1D24;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: white;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .mock-btn-open:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .mock-file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s;
+            margin-bottom: 2px;
+        }
+        .mock-file-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .mock-file-item.active {
+            background: #7C5CFF;
+            color: white;
+            font-weight: 600;
+        }
+        .mock-preview-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px 40px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            height: 520px;
+        }
+        /* Custom scrollbar inside mockup preview */
+        .mock-preview-area::-webkit-scrollbar {
+            width: 6px;
+        }
+        .mock-preview-area::-webkit-scrollbar-thumb {
+            background: rgba(55, 53, 47, 0.15);
+            border-radius: 4px;
+        }
+        .mock-preview-area::-webkit-scrollbar-thumb:hover {
+            background: rgba(55, 53, 47, 0.3);
+        }
+        /* Markdown rendering styles inside mockup */
+        .mock-markdown-body {
+            max-width: 700px;
+            width: 100%;
+            color: #37352f;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .mock-markdown-body h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-top: 0.5em;
+            margin-bottom: 0.4em;
+            color: #0F1117;
+            font-family: 'Outfit', sans-serif;
+        }
+        .mock-markdown-body h2 {
+            font-size: 1.35em;
+            font-weight: 600;
+            margin-top: 1.2em;
+            margin-bottom: 0.4em;
+            color: #0F1117;
+            font-family: 'Outfit', sans-serif;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding-bottom: 4px;
+        }
+        .mock-markdown-body p {
+            margin-bottom: 1em;
+        }
+        .mock-markdown-body code {
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+            background-color: rgba(175, 184, 193, 0.2);
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d63384;
+        }
+        .mock-markdown-body pre {
+            padding: 12px 16px;
+            background-color: #f6f8fa;
+            border-radius: 8px;
+            margin: 1em 0;
+            overflow-x: auto;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .mock-markdown-body pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #37352f;
+            font-size: 13px;
+        }
+        .mock-markdown-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            font-size: 13px;
+        }
+        .mock-markdown-body table th, .mock-markdown-body table td {
+            padding: 8px 12px;
+            border: 1px solid #dfe2e5;
+        }
+        .mock-markdown-body table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .mock-markdown-body table tr:nth-child(2n) {
+            background-color: #f8f9fa;
+        }
+        .mock-markdown-body blockquote {
+            border-left: 4px solid #7C5CFF;
+            padding: 4px 16px;
+            color: #57606a;
+            background-color: #f8f9fa;
+            border-radius: 0 6px 6px 0;
+            margin: 1em 0;
+        }
     </style>
 </head>
 <body class="font-body-md overflow-x-hidden relative">
@@ -227,7 +369,7 @@
                     Ver Código en GitHub
                 </a>
 </div>
-<!-- Real Application Screenshot Mockup -->
+<!-- Real Application Screenshot Mockup (Interactive HTML Version) -->
 <div class="relative glass-card rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] border border-white/10 p-1 bg-slate-950/60 group">
   <!-- Window Header -->
   <div class="flex items-center justify-between px-4 py-3 bg-slate-900/60 border-b border-white/5 rounded-t-xl select-none">
@@ -238,14 +380,172 @@
     </div>
     <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 font-label-md bg-slate-950/40 px-4 py-1 rounded border border-white/5">
       <span class="material-symbols-outlined text-xs text-indigo-400" style="font-size: 14px;">description</span>
-      <span>document.md — MarkdownFlow</span>
+      <span id="mock-window-title">README.md — MarkdownFlow</span>
     </div>
     <div class="w-16"></div> <!-- Spacer to balance centering -->
   </div>
-  <!-- Application Image -->
-  <div class="relative overflow-hidden rounded-b-xl bg-slate-950">
-    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-purple-500/10 opacity-30 pointer-events-none z-10"></div>
-    <img src="aplicacion.jpeg" alt="MarkdownFlow Application Interface" class="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.01]">
+  
+  <!-- Interactive App Layout -->
+  <div class="relative flex overflow-hidden rounded-b-xl bg-slate-950 text-left select-none animate-fade-in" style="height: 520px;">
+    <!-- Sidebar Explorer -->
+    <aside class="mock-sidebar">
+      <div class="p-4 flex flex-col gap-2">
+        <button class="mock-btn-open cursor-pointer hover:scale-[1.02] active:scale-95 duration-100" onclick="simulateSelectFolder()">
+          Change Folder
+        </button>
+      </div>
+      <div class="flex-grow overflow-y-auto px-2">
+        <div class="px-3.5 py-3 font-semibold text-[11px] text-slate-500 uppercase tracking-widest font-label-md">Files</div>
+        <ul class="space-y-0.5">
+          <li id="file-readme" class="mock-file-item active" onclick="switchMockFile('readme', 'README.md')">
+            <span class="mr-2.5 text-sm">📄</span>
+            <span class="truncate">README.md</span>
+          </li>
+          <li id="file-guia" class="mock-file-item" onclick="switchMockFile('guia', 'guia_rapida.md')">
+            <span class="mr-2.5 text-sm">📄</span>
+            <span class="truncate">guia_rapida.md</span>
+          </li>
+          <li id="file-katex" class="mock-file-item" onclick="switchMockFile('katex', 'katex_ejemplos.md')">
+            <span class="mr-2.5 text-sm">📄</span>
+            <span class="truncate">katex_ejemplos.md</span>
+          </li>
+        </ul>
+      </div>
+      <div class="p-3 text-[10px] text-slate-500 border-t border-white/5 text-center font-label-md select-none">
+        v1.1.6
+      </div>
+    </aside>
+
+    <!-- Main App Editor/Preview Area -->
+    <main class="flex-grow flex flex-col bg-white overflow-hidden relative">
+      <!-- Top Action Bar -->
+      <header class="h-[46px] flex items-center justify-between px-6 border-b border-slate-100 flex-shrink-0 select-none">
+        <div class="text-sm font-semibold text-slate-800 font-label-md" id="mock-top-bar-file">
+          README.md
+        </div>
+        <div>
+          <button class="bg-[#7C5CFF] hover:bg-[#6843fc] text-white px-4 py-1.5 rounded-lg text-xs font-semibold cursor-pointer active:scale-95 duration-150 transition-all flex items-center gap-1.5 shadow-sm" onclick="simulateExportPdf()">
+            <span class="material-symbols-outlined text-xs" style="font-size: 14px;">picture_as_pdf</span>
+            Export to PDF
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable Preview Pane -->
+      <div class="mock-preview-area" id="mock-preview-container">
+        <!-- Document 1: README.md -->
+        <div id="doc-readme" class="mock-markdown-body">
+          <h1 class="font-extrabold text-2xl font-headline-sm border-b pb-2 mb-4">🚀 MarkdownFlow</h1>
+          <p>¡Bienvenido a <strong>MarkdownFlow</strong>! Un visualizador de escritorio minimalista y libre de distracciones diseñado para convertir tus archivos Markdown en documentos PDF profesionales.</p>
+          
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">✨ Características Principales</h2>
+          <ul class="list-disc pl-6 space-y-2 mb-6">
+            <li><strong>Drag & Drop Nativo:</strong> Arrastra cualquier archivo <code>.md</code> directamente para cargarlo.</li>
+            <li><strong>Imágenes Locales:</strong> Carga imágenes guardadas en tu disco de forma nativa.</li>
+            <li><strong>Soporte GFM Completo:</strong> Tablas avanzadas, listas de tareas y citas.</li>
+            <li><strong>Ecuaciones Matemáticas:</strong> Soporte total de notación científica mediante KaTeX.</li>
+          </ul>
+
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">🛠️ Uso Rápido</h2>
+          <p>Para probar o desarrollar localmente el visualizador, clona el repositorio y ejecuta:</p>
+          <pre><code># Instala las dependencias del proyecto
+npm install
+
+# Inicia la aplicación en modo desarrollo
+npm run dev</code></pre>
+        </div>
+
+        <!-- Document 2: guia_rapida.md -->
+        <div id="doc-guia" class="mock-markdown-body hidden">
+          <h1 class="font-extrabold text-2xl font-headline-sm border-b pb-2 mb-4">📋 Guía de Características</h1>
+          <p>MarkdownFlow es compatible con el estándar <strong>GitHub Flavored Markdown (GFM)</strong> de alto rendimiento. A continuación se detallan las características del renderizador:</p>
+
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">⚡ Comparativa de Renderizado</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Soporte</th>
+                <th>Calidad PDF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>KaTeX Math</code></td>
+                <td class="text-green-600 font-semibold font-label-md">Sí (Nativo)</td>
+                <td>Excelente (Vectorial)</td>
+              </tr>
+              <tr>
+                <td><code>Imágenes Locales</code></td>
+                <td class="text-green-600 font-semibold font-label-md">Sí (Nativo)</td>
+                <td>Integrado nativamente</td>
+              </tr>
+              <tr>
+                <td><code>Listas de Tareas</code></td>
+                <td class="text-green-600 font-semibold font-label-md">Sí (Nativo)</td>
+                <td>Perfecto</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">✅ Lista de Tareas (Ejemplo)</h2>
+          <ul class="space-y-1.5 pl-1 mb-6">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-green-600" style="font-size: 18px;">check_box</span>
+              <span>Implementar drag & drop de archivos</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-green-600" style="font-size: 18px;">check_box</span>
+              <span>Añadir resolutor de imágenes locales</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-slate-400" style="font-size: 18px;">check_box_outline_blank</span>
+              <span>Agregar selector de fuentes personalizadas para PDF</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Document 3: katex_ejemplos.md -->
+        <div id="doc-katex" class="mock-markdown-body hidden">
+          <h1 class="font-extrabold text-2xl font-headline-sm border-b pb-2 mb-4">📐 KaTeX Científico</h1>
+          <p>MarkdownFlow renderiza ecuaciones matemáticas complejas utilizando KaTeX en tus documentos. Puedes escribir fórmulas inline como <code>E = mc²</code> o bloques complejos.</p>
+
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">🌌 Relatividad General</h2>
+          <blockquote>
+            La ecuación de campo de Einstein describe cómo el espacio-tiempo es curvado por la materia y la energía en el cosmos.
+          </blockquote>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center my-6 flex flex-col items-center justify-center">
+            <div class="font-serif text-lg md:text-xl text-slate-800 tracking-wide mb-1.5 italic font-semibold">
+              G<sub>μν</sub> + Λ g<sub>μν</sub> = <span class="not-italic">8πG</span> / c<sup>4</sup> T<sub>μν</sub>
+            </div>
+            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-label-md">Ecuación de Campo de Einstein</span>
+          </div>
+
+          <h2 class="font-semibold text-lg font-headline-sm mt-6 mb-3">📐 Integrales de Gauss</h2>
+          <p>Soporte completo para cálculo vectorial e integral de alto nivel:</p>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center my-6 flex flex-col items-center justify-center">
+            <div class="font-serif text-lg md:text-xl text-slate-800 tracking-wide mb-1.5 italic font-semibold">
+              ∫<sub>-∞</sub><sup>∞</sup> e<sup>-x<sup>2</sup></sup> dx = √π
+            </div>
+            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-label-md">Integral Gaussiana</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drag & Drop overlay simulation -->
+      <div id="mock-drop-overlay" class="absolute inset-0 bg-[#7C5CFF]/90 backdrop-blur-sm z-40 flex flex-col items-center justify-center text-white gap-3 opacity-0 pointer-events-none transition-all duration-300">
+        <span class="material-symbols-outlined text-5xl animate-bounce">upload_file</span>
+        <div class="font-bold text-lg">Suelta tu archivo Markdown aquí</div>
+        <div class="text-xs text-white/70">Para visualizar de inmediato en MarkdownFlow</div>
+      </div>
+
+      <!-- Toast notification -->
+      <div id="mock-toast" class="absolute bottom-6 right-6 bg-[#f6ffed] border border-[#b7eb8f] text-[#389e0d] px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50 text-xs font-semibold">
+        <span class="material-symbols-outlined text-sm" style="font-size: 16px;">check_circle</span>
+        <span id="mock-toast-msg">PDF exportado correctamente a README.pdf</span>
+      </div>
+    </main>
   </div>
 </div>
 </section>
@@ -482,5 +782,105 @@
             contentPrivacy.classList.add('hidden');
         }
     }
+
+    // Interactive Mockup Application Functions
+    let currentActiveFile = 'readme';
+
+    function switchMockFile(fileId, filename) {
+        // Toggle active class on sidebar items
+        document.querySelectorAll('.mock-file-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.getElementById(`file-${fileId}`).classList.add('active');
+
+        // Swap preview content
+        document.getElementById('doc-readme').classList.add('hidden');
+        document.getElementById('doc-guia').classList.add('hidden');
+        document.getElementById('doc-katex').classList.add('hidden');
+        document.getElementById(`doc-${fileId}`).classList.remove('hidden');
+
+        // Reset scroll position of preview container
+        document.getElementById('mock-preview-container').scrollTop = 0;
+
+        // Update titles
+        document.getElementById('mock-window-title').textContent = `${filename} — MarkdownFlow`;
+        document.getElementById('mock-top-bar-file').textContent = filename;
+        currentActiveFile = fileId;
+    }
+
+    function simulateExportPdf() {
+        const toast = document.getElementById('mock-toast');
+        const toastMsg = document.getElementById('mock-toast-msg');
+        
+        let activeFilename = 'README.pdf';
+        if (currentActiveFile === 'guia') activeFilename = 'guia_rapida.pdf';
+        if (currentActiveFile === 'katex') activeFilename = 'katex_ejemplos.pdf';
+
+        toastMsg.textContent = `✨ PDF exportado correctamente a ${activeFilename}`;
+        
+        // Slide in toast
+        toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        // Auto-hide toast after 3.5 seconds
+        setTimeout(() => {
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+        }, 3500);
+    }
+
+    function simulateSelectFolder() {
+        const toast = document.getElementById('mock-toast');
+        const toastMsg = document.getElementById('mock-toast-msg');
+        
+        toastMsg.textContent = `📂 Directorio de Markdown cargado con éxito.`;
+        
+        toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        setTimeout(() => {
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+        }, 3500);
+    }
+
+    // Drag & Drop simulation on the mockup window
+    const mockContainer = document.getElementById('mock-preview-container').parentNode;
+    const dropOverlay = document.getElementById('mock-drop-overlay');
+
+    mockContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        dropOverlay.classList.add('opacity-100');
+    });
+
+    dropOverlay.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay.classList.remove('opacity-100');
+        dropOverlay.classList.add('opacity-0', 'pointer-events-none');
+    });
+
+    dropOverlay.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay.classList.remove('opacity-100');
+        dropOverlay.classList.add('opacity-0', 'pointer-events-none');
+
+        // Show a success loading alert toast
+        const toast = document.getElementById('mock-toast');
+        const toastMsg = document.getElementById('mock-toast-msg');
+        
+        toastMsg.textContent = `📥 Archivo Markdown detectado y renderizado.`;
+        
+        toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        setTimeout(() => {
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+        }, 3500);
+    });
 </script>
 </body></html>
