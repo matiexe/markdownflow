@@ -220,11 +220,16 @@
         .mock-preview-area {
             flex: 1;
             overflow-y: auto;
-            padding: 30px 40px;
+            padding: 16px 20px;
             background-color: #ffffff;
             display: flex;
             justify-content: center;
             height: 520px;
+        }
+        @media (min-width: 768px) {
+            .mock-preview-area {
+                padding: 30px 40px;
+            }
         }
         /* Custom scrollbar inside mockup preview */
         .mock-preview-area::-webkit-scrollbar {
@@ -330,8 +335,8 @@
 
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
-<nav class="flex justify-between items-center px-margin h-16 max-w-7xl mx-auto w-full">
-<div class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+<nav class="flex justify-between items-center px-4 md:px-margin h-16 max-w-7xl mx-auto w-full">
+<div class="font-headline-sm text-lg sm:text-headline-sm font-bold text-on-surface flex items-center gap-2">
 <img src="public/logofull.png" alt="MarkdownFlow Logo" class="w-8 h-8 object-contain"/>
                 MarkdownFlow
             </div>
@@ -341,14 +346,14 @@
 <a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-body-md text-body-md" href="https://github.com/matiexe/markdownflow/blob/main/README.md" target="_blank" rel="noopener noreferrer">Documentation</a>
 <a class="text-on-surface-variant hover:text-primary transition-all duration-300 font-body-md text-body-md" href="https://github.com/matiexe/markdownflow" target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
-<a href="https://github.com/matiexe/markdownflow/releases/latest" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold active:scale-95 duration-200 transition-all hover:shadow-[0_0_20px_rgba(128,131,255,0.4)] flex items-center justify-center">
-                Descargar v1.1.6
+<a href="https://github.com/matiexe/markdownflow/releases/latest" class="bg-primary-container text-on-primary-container px-4 sm:px-6 py-2 rounded-full font-bold text-sm sm:text-base active:scale-95 duration-200 transition-all hover:shadow-[0_0_20px_rgba(128,131,255,0.4)] flex items-center justify-center">
+                Descargar<span class="hidden sm:inline">&nbsp;v1.1.6</span>
             </a>
 </nav>
 </header>
-<main class="pt-32">
+<main class="pt-24 md:pt-32">
 <!-- Hero Section -->
-<section class="max-w-7xl mx-auto px-margin text-center mb-2xl">
+<section class="max-w-7xl mx-auto px-4 md:px-margin text-center mb-2xl">
 <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-body-sm shimmer mb-md">
 <span class="material-symbols-outlined text-sm" data-icon="update">update</span>
                 ✨ Versión 1.1.6 ya disponible
@@ -357,10 +362,10 @@
                 Visualiza tus archivos Markdown.<br/>
 <span class="gradient-text">Fluye hacia PDF.</span>
 </h1>
-<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
+<p class="text-base md:text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
                 Un visualizador minimalista y libre de distracciones que convierte tu Markdown en documentos PDF perfectamente formateados en un solo clic.
             </p>
-<div class="flex flex-col sm:flex-row justify-center gap-md mb-2xl">
+<div class="flex flex-col sm:flex-row justify-center gap-md mb-12 md:mb-2xl">
 <a href="https://github.com/matiexe/markdownflow/releases/latest" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 glow-button transition-all duration-300 hover:scale-105 active:scale-95">
 <span class="material-symbols-outlined" data-icon="download">download</span>
                     Descargar para Windows (.exe)
@@ -371,7 +376,7 @@
                 </a>
 </div>
 <!-- Real Application Screenshot Mockup (Interactive HTML Version) -->
-<div class="relative glass-card rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] border border-white/10 p-1 bg-slate-950/60 group">
+<div class="relative glass-card rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] border border-white/10 p-1 bg-slate-950/60 group mx-2 sm:mx-auto">
   <!-- Window Header -->
   <div class="flex items-center justify-between px-4 py-3 bg-slate-900/60 border-b border-white/5 rounded-t-xl select-none">
     <div class="flex items-center gap-2">
@@ -387,9 +392,22 @@
   </div>
   
   <!-- Interactive App Layout -->
-  <div class="relative flex overflow-hidden rounded-b-xl bg-slate-950 text-left select-none animate-fade-in" style="height: 520px;">
+  <div class="relative flex flex-col md:flex-row overflow-hidden rounded-b-xl bg-slate-950 text-left select-none animate-fade-in" style="height: 520px;">
+    <!-- Mobile File Tabs (Visible only on mobile) -->
+    <div class="flex md:hidden bg-slate-900 border-b border-white/5 overflow-x-auto select-none flex-shrink-0">
+      <div id="mobile-file-readme" class="flex-shrink-0 px-4 py-2.5 text-xs font-semibold bg-slate-950 text-white border-r border-white/5 cursor-pointer" onclick="switchMockFile('readme', 'README.md')">
+          README.md
+      </div>
+      <div id="mobile-file-guia" class="flex-shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-r border-white/5 cursor-pointer" onclick="switchMockFile('guia', 'guia_rapida.md')">
+          guia_rapida.md
+      </div>
+      <div id="mobile-file-katex" class="flex-shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-r border-white/5 cursor-pointer" onclick="switchMockFile('katex', 'katex_ejemplos.md')">
+          katex_ejemplos.md
+      </div>
+    </div>
+
     <!-- Sidebar Explorer -->
-    <aside class="mock-sidebar">
+    <aside class="hidden md:flex mock-sidebar">
       <div class="p-4 flex flex-col gap-2">
         <button class="mock-btn-open cursor-pointer hover:scale-[1.02] active:scale-95 duration-100" onclick="simulateSelectFolder()">
           Change Folder
@@ -551,51 +569,51 @@ npm run dev</code></pre>
 </div>
 </section>
 <!-- Features Grid -->
-<section id="features" class="max-w-7xl mx-auto px-margin py-2xl scroll-mt-24">
+<section id="features" class="max-w-7xl mx-auto px-4 md:px-margin py-16 md:py-2xl scroll-mt-24">
 <h2 class="font-headline-md text-headline-md text-center mb-xl">Diseñado para la velocidad y la precisión</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-lg">
 <!-- Feature 1 -->
-<div class="glass-card p-xl rounded-2xl flex flex-col gap-md">
+<div class="glass-card p-6 md:p-xl rounded-2xl flex flex-col gap-md">
 <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined" style="font-size: 24px;">upload_file</span>
 </div>
 <h3 class="font-headline-sm text-headline-sm">Drag & Drop Instantáneo</h3>
-<p class="text-on-surface-variant">Sin fricciones ni menús complejos. Arrastra cualquier archivo <code>.md</code> directamente a la ventana de la aplicación para cargarlo e iniciar la visualización de inmediato.</p>
+<p class="text-on-surface-variant text-sm md:text-base">Sin fricciones ni menús complejos. Arrastra cualquier archivo <code>.md</code> directamente a la ventana de la aplicación para cargarlo e iniciar la visualización de inmediato.</p>
 </div>
 <!-- Feature 2 -->
-<div class="glass-card p-xl rounded-2xl flex flex-col gap-md">
+<div class="glass-card p-6 md:p-xl rounded-2xl flex flex-col gap-md">
 <div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
 <span class="material-symbols-outlined" style="font-size: 24px;">image</span>
 </div>
 <h3 class="font-headline-sm text-headline-sm">Resolución de Imágenes Locales</h3>
-<p class="text-on-surface-variant">Tus documentos siempre completos. La aplicación mapea y resuelve de forma nativa e inteligente las rutas de imágenes relativas guardadas localmente en tu equipo.</p>
+<p class="text-on-surface-variant text-sm md:text-base">Tus documentos siempre completos. La aplicación mapea y resuelve de forma nativa e inteligente las rutas de imágenes relativas guardadas localmente en tu equipo.</p>
 </div>
 <!-- Feature 3 -->
-<div class="glass-card p-xl rounded-2xl flex flex-col gap-md">
+<div class="glass-card p-6 md:p-xl rounded-2xl flex flex-col gap-md">
 <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
 <span class="material-symbols-outlined" style="font-size: 24px;">functions</span>
 </div>
 <h3 class="font-headline-sm text-headline-sm">Fórmulas KaTeX y Tablas GFM</h3>
-<p class="text-on-surface-variant">Escritura técnica de alto rendimiento. Soporte total para GitHub Flavored Markdown (GFM), incluyendo tablas avanzadas, listas de tareas y ecuaciones científicas mediante KaTeX.</p>
+<p class="text-on-surface-variant text-sm md:text-base">Escritura técnica de alto rendimiento. Soporte total para GitHub Flavored Markdown (GFM), incluyendo tablas avanzadas, listas de tareas y ecuaciones científicas mediante KaTeX.</p>
 </div>
 <!-- Feature 4 -->
-<div class="glass-card p-xl rounded-2xl flex flex-col gap-md">
+<div class="glass-card p-6 md:p-xl rounded-2xl flex flex-col gap-md">
 <div class="w-12 h-12 rounded-xl bg-primary-fixed-dim/10 flex items-center justify-center text-primary-fixed-dim">
 <span class="material-symbols-outlined" style="font-size: 24px;">picture_as_pdf</span>
 </div>
 <h3 class="font-headline-sm text-headline-sm">Exportación a PDF en un clic</h3>
-<p class="text-on-surface-variant">Generación perfecta y limpia. Exporta tus archivos procesados a documentos PDF profesionales y libres de distracciones, aislando el contenido del resto de la interfaz.</p>
+<p class="text-on-surface-variant text-sm md:text-base">Generación perfecta y limpia. Exporta tus archivos procesados a documentos PDF profesionales y libres de distracciones, aislando el contenido del resto de la interfaz.</p>
 </div>
 </div>
 </section>
 <!-- CTA Section -->
-<section class="max-w-7xl mx-auto px-margin py-2xl">
-<div class="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-white/10 rounded-3xl p-2xl text-center relative overflow-hidden">
+<section class="max-w-7xl mx-auto px-4 md:px-margin py-12 md:py-2xl">
+<div class="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-white/10 rounded-3xl py-12 px-6 md:p-2xl text-center relative overflow-hidden">
 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15),transparent_70%)]"></div>
 <div class="relative z-10">
-<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md mb-md">¿Listo para mejorar tus documentos técnicos?</h2>
-<p class="font-body-lg text-on-surface-variant mb-xl max-w-xl mx-auto">Únete a cientos de desarrolladores y redactores que ya han simplificado su flujo de trabajo con MarkdownFlow.</p>
-<a href="https://github.com/matiexe/markdownflow/releases/latest" class="bg-primary text-on-primary-container px-10 py-5 rounded-full font-bold text-body-lg hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(192,193,255,0.3)] inline-flex items-center justify-center">
+<h2 class="font-display-lg text-headline-sm md:text-headline-md lg:text-display-lg mb-md">¿Listo para mejorar tus documentos técnicos?</h2>
+<p class="text-base md:text-body-lg text-on-surface-variant mb-xl max-w-xl mx-auto">Únete a cientos de desarrolladores y redactores que ya han simplificado su flujo de trabajo con MarkdownFlow.</p>
+<a href="https://github.com/matiexe/markdownflow/releases/latest" class="bg-primary text-on-primary-container px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-sm md:text-body-lg hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(192,193,255,0.3)] inline-flex items-center justify-center">
                         Obtén MarkdownFlow Gratis
                     </a>
 </div>
@@ -604,12 +622,12 @@ npm run dev</code></pre>
 </main>
 <!-- Footer -->
 <footer class="w-full mt-2xl border-t border-outline-variant/10 bg-surface-container-lowest">
-<div class="flex flex-col md:flex-row justify-between items-center px-margin py-xl gap-lg max-w-7xl mx-auto w-full">
+<div class="flex flex-col md:flex-row justify-between items-center px-4 md:px-margin py-xl gap-lg max-w-7xl mx-auto w-full text-center md:text-left">
 <div class="flex flex-col gap-2">
 <div class="font-headline-sm text-headline-sm font-bold text-on-surface">MarkdownFlow</div>
 <p class="font-body-sm text-body-sm text-on-surface-variant opacity-80">© 2026 MarkdownFlow. built with love by mexxtz and gemini ia. v1.1.6</p>
 </div>
-<div class="flex gap-xl text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex flex-wrap justify-center gap-4 sm:gap-xl text-on-surface-variant font-body-sm text-body-sm">
 <button class="hover:text-on-surface transition-colors focus:outline-none" onclick="openLegal('privacy')">Privacy Policy</button>
 <button class="hover:text-on-surface transition-colors focus:outline-none" onclick="openLegal('terms')">Terms of Service</button>
 <button class="hover:text-on-surface transition-colors focus:outline-none" onclick="openChangelog()">Changelog</button>
@@ -620,18 +638,18 @@ npm run dev</code></pre>
 
 <!-- Changelog Modal -->
 <div id="changelog-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-    <div class="glass-card max-w-2xl w-full rounded-3xl p-8 border border-white/10 shadow-2xl relative mx-4 max-h-[85vh] flex flex-col overflow-hidden">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-5 md:p-8 border border-white/10 shadow-2xl relative mx-4 max-h-[85vh] flex flex-col overflow-hidden">
       <!-- Close button -->
-      <button onclick="closeChangelog()" class="absolute top-6 right-6 z-50 text-on-surface-variant hover:text-primary transition-all duration-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 focus:outline-none">
+      <button onclick="closeChangelog()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 text-on-surface-variant hover:text-primary transition-all duration-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 focus:outline-none">
         <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
       </button>
     
     <!-- Modal Header -->
-    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
-      <span class="material-symbols-outlined text-primary text-3xl" style="font-size: 28px;">history</span>
+    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5 pr-8">
+      <span class="material-symbols-outlined text-primary text-3xl flex-shrink-0" style="font-size: 28px;">history</span>
       <div>
-        <h3 class="font-headline-sm text-headline-sm text-on-surface">Historial de Cambios</h3>
-        <p class="text-xs text-on-surface-variant font-label-md">Historial de versiones oficiales de MarkdownFlow</p>
+        <h3 class="font-headline-sm text-lg md:text-headline-sm text-on-surface">Historial de Cambios</h3>
+        <p class="text-[10px] md:text-xs text-on-surface-variant font-label-md">Historial de versiones oficiales de MarkdownFlow</p>
       </div>
     </div>
     
@@ -685,16 +703,16 @@ npm run dev</code></pre>
 
 <!-- Legal Modal (Privacy & Terms) -->
 <div id="legal-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-    <div class="glass-card max-w-2xl w-full rounded-3xl p-8 border border-white/10 shadow-2xl relative mx-4 max-h-[85vh] flex flex-col overflow-hidden">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-5 md:p-8 border border-white/10 shadow-2xl relative mx-4 max-h-[85vh] flex flex-col overflow-hidden">
       <!-- Close button -->
-      <button onclick="closeLegal()" class="absolute top-6 right-6 z-50 text-on-surface-variant hover:text-primary transition-all duration-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 focus:outline-none">
+      <button onclick="closeLegal()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 text-on-surface-variant hover:text-primary transition-all duration-200 flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 focus:outline-none">
         <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
       </button>
     
     <!-- Modal Tabs -->
-    <div class="flex border-b border-white/5 mb-6">
-      <button id="tab-privacy" onclick="switchLegalTab('privacy')" class="px-4 py-2 font-headline-sm text-headline-sm border-b-2 border-primary text-primary transition-colors font-semibold focus:outline-none">Política de Privacidad</button>
-      <button id="tab-terms" onclick="switchLegalTab('terms')" class="px-4 py-2 font-headline-sm text-headline-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors font-semibold focus:outline-none">Términos</button>
+    <div class="flex border-b border-white/5 mb-6 pr-8">
+      <button id="tab-privacy" onclick="switchLegalTab('privacy')" class="px-3 md:px-4 py-2 text-sm sm:text-base md:text-headline-sm border-b-2 border-primary text-primary transition-colors font-semibold focus:outline-none">Privacidad</button>
+      <button id="tab-terms" onclick="switchLegalTab('terms')" class="px-3 md:px-4 py-2 text-sm sm:text-base md:text-headline-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors font-semibold focus:outline-none">Términos</button>
     </div>
     
     <!-- Scrollable content -->
@@ -788,11 +806,23 @@ npm run dev</code></pre>
     let currentActiveFile = 'readme';
 
     function switchMockFile(fileId, filename) {
-        // Toggle active class on sidebar items
+        // Toggle active class on sidebar items (desktop)
         document.querySelectorAll('.mock-file-item').forEach(item => {
             item.classList.remove('active');
         });
-        document.getElementById(`file-${fileId}`).classList.add('active');
+        const desktopItem = document.getElementById(`file-${fileId}`);
+        if (desktopItem) desktopItem.classList.add('active');
+
+        // Toggle active class on mobile tabs
+        document.querySelectorAll('[id^="mobile-file-"]').forEach(item => {
+            item.classList.remove('bg-slate-950', 'text-white');
+            item.classList.add('text-slate-400');
+        });
+        const activeMobileTab = document.getElementById(`mobile-file-${fileId}`);
+        if (activeMobileTab) {
+            activeMobileTab.classList.remove('text-slate-400');
+            activeMobileTab.classList.add('bg-slate-950', 'text-white');
+        }
 
         // Swap preview content
         document.getElementById('doc-readme').classList.add('hidden');
