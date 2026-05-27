@@ -14,17 +14,38 @@ interface MarkdownPreviewProps {
 }
 
 const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ content, filePath }) => {
-  // Function to resolve relative image paths
   const resolveImagePath = (src: string) => {
     if (!filePath || src.startsWith('http') || src.startsWith('data:')) {
       return src
     }
     
-    // In Electron, we use our custom protocol app-file://
-    // The path should be absolute. We get the directory of the current markdown file.
-    const dir = filePath.substring(0, filePath.lastIndexOf('\\') + 1)
-    const absolutePath = dir + src.replace(/\//g, '\\')
-    return `app-file://${absolutePath}`
+    // Decodificar el src para evitar problemas de doble codificación
+    const decodedSrc = decodeURIComponent(src)
+    
+    // Detectar el separador de directorios en base al archivo markdown
+    const isWindows = filePath.includes('\\')
+    
+    // Comprobar si la ruta de la imagen ya es absoluta local
+    const isAbsolute = decodedSrc.startsWith('/') || decodedSrc.startsWith('\\') || /^[a-zA-Z]:/.test(decodedSrc)
+    
+    let absolutePath = ''
+    if (isAbsolute) {
+      // Normalizar slashes a barras inclinadas (seguro para URLs)
+      absolutePath = decodedSrc.replace(/\\/g, '/')
+    } else {
+      // Obtener el directorio del archivo markdown actual
+      const lastSeparatorIndex = Math.max(filePath.lastIndexOf('\\'), filePath.lastIndexOf('/'))
+      const dir = filePath.substring(0, lastSeparatorIndex + 1)
+      
+      // Normalizar los separadores de la ruta relativa y concatenar (siempre a forward slashes para la URL)
+      const normalizedSrc = decodedSrc.replace(/\\/g, '/')
+      absolutePath = (dir + normalizedSrc).replace(/\\/g, '/')
+    }
+    
+    // Garantizar que la ruta absoluta no empiece con un slash adicional si ya lo tiene,
+    // y estructurarla con exactamente 3 slashes y URL-encoding para espacios y caracteres especiales
+    const cleanPath = absolutePath.startsWith('/') ? absolutePath.substring(1) : absolutePath
+    return `app-file:///${encodeURI(cleanPath)}`
   }
 
   return (

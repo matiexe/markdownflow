@@ -1,8 +1,22 @@
 import { app, BrowserWindow, ipcMain, dialog, protocol } from 'electron'
 import path from 'node:path'
 import fs from 'node:fs/promises'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { net } from 'electron'
+
+// Register custom protocol privileges before app is ready
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: 'app-file',
+    privileges: {
+      secure: true,
+      standard: true,
+      supportFetchAPI: true,
+      corsEnabled: true,
+      bypassCSP: true
+    }
+  }
+])
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -16,8 +30,35 @@ let win: BrowserWindow | null
 // Register custom protocol for local files
 function registerLocalFileProtocol() {
   protocol.handle('app-file', (request) => {
-    const filePath = decodeURIComponent(request.url.replace('app-file://', ''))
-    return net.fetch('file://' + filePath)
+    try {
+      console.log('=== APP-FILE PROTOCOL REQUEST ===')
+      console.log('Original request URL:', request.url)
+      // Strip protocol prefix (handling double or triple slashes)
+      let rawPath = request.url.replace(/^app-file:\/\/\/?/, '')
+      
+      // Restore colon for Windows drive letters if stripped by Chromium URL normalization
+      if (/^[a-zA-Z]\//.test(rawPath)) {
+        rawPath = rawPath[0] + ':' + rawPath.substring(1)
+      } else if (/^\/[a-zA-Z]\//.test(rawPath)) {
+        rawPath = '/' + rawPath[1] + ':' + rawPath.substring(2)
+      }
+      
+      console.log('Raw Path (Restored):', rawPath)
+      // Decode URL components (like %20 to space)
+      const decodedPath = decodeURIComponent(rawPath)
+      console.log('Decoded Path:', decodedPath)
+      // Resolve absolute path (handles relative paths like . and .. and normalizes separators)
+      const absolutePath = path.resolve(decodedPath)
+      console.log('Resolved Absolute Path:', absolutePath)
+      // Convert to a perfectly formed file:// URL
+      const fileUrl = pathToFileURL(absolutePath).toString()
+      console.log('Constructed File URL:', fileUrl)
+      
+      return net.fetch(fileUrl)
+    } catch (error) {
+      console.error('Failed to handle app-file request:', error)
+      return new Response('Invalid file path', { status: 400 })
+    }
   })
 }
 
@@ -41,6 +82,7 @@ function createWindow() {
 
   // Also remove the menu completely
   win.setMenuBarVisibility(false)
+  win.webContents.openDevTools()
 
   // Register protocol before loading
   registerLocalFileProtocol()
